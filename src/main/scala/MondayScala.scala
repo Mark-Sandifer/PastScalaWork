@@ -1,0 +1,3 @@
+object MondayScala extends App {
+
+}
