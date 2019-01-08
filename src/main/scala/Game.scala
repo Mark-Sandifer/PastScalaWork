@@ -1,8 +1,7 @@
 object Game extends App {
   def rng(higher:Int, lower:Int):Int = {
-    var computerGuess = scala.util.Random
-    var computerGuessInt = computerGuess.nextInt(higher - lower)
-    return computerGuessInt
+    val computerGuess = scala.util.Random
+    computerGuess.nextInt(higher - lower)
   }
   def textgap(){
     println("---")
@@ -12,10 +11,10 @@ object Game extends App {
     textgap
   }
   def pinitiative():Int = {
-    return rng(20, 1)
+    rng(20, 1)
   }
   def einitiative():Int = {
-    return rng(20, 1)
+    rng(20, 1)
   }
   def doorint(){
     textgap
@@ -27,28 +26,97 @@ object Game extends App {
     textgap
     println("You see a path to the right")
   }
-  def enemyact(){
-    println("Their hit lands!")
-    hit = rng(6, 1)
+  def pHealthCheck(): Unit = {
     playerlife = playerlife - hit
     println(s"The enemy hit you for $hit, your current life total is $playerlife")
     if(playerlife <= 0){
       combat = 0
     }
-
+  }
+  def eHealthCheck(): Unit ={
+    enemylife = enemylife - hit
+    println(s"You hit the enemy for $hit, current enemy life total is $enemylife")
+    if(enemylife <= 0){
+      combat = 0
+    }
+  }
+  def spellCast(): Unit ={
+    cast = 0
+    if(cast == 0){
+      println(s"What spell do you want to cast? \n1 - Magic Missle.  $mmslots / 2\n2 - Fire Bolt.  $fbslots / 3\n3 - Thunder Bolt.  $tbslots / 1\n4 - Rock Throw.  $rtslots / 4")
+      readInt() match{
+        case 1 =>
+          if(mmslots <= 0){
+            println("You attempt to case this spell but you're out of Magic Missle juice!")
+          }
+          else{
+            mmslots = mmslots - 1
+            println("You cast Magic Missle!")
+            hit = rng(8, 1)
+            enemylife = enemylife - hit
+            println(s"You hit the enemy for $hit, current enemy life total is $enemylife")
+            if(enemylife <= 0){
+              combat = 0
+            }
+          }
+        case 2 =>
+          if(fbslots <= 0){
+            println("You attempt to case this spell but you're out of Fire Bolt juice!")
+          }
+          else{
+            fbslots = fbslots - 1
+            println("You cast Fire Bolt!")
+            hit = rng(15, 1)
+            enemylife = enemylife - hit
+            println(s"You hit the enemy for $hit, current enemy life total is $enemylife")
+            if(enemylife <= 0){
+              combat = 0
+            }
+          }
+        case 3 =>
+          if(tbslots <= 0){
+            println("You attempt to case this spell but you're out of Thunder Bolt juice!")
+          }
+          else{
+            tbslots = tbslots - 1
+            println("You cast Thunder Bolt!")
+            hit = rng(5, 3)
+            enemylife = enemylife - hit
+            println(s"You hit the enemy for $hit, current enemy life total is $enemylife")
+            if(enemylife <= 0){
+              combat = 0
+            }
+          }
+        case 4 =>
+          if(rtslots <= 0){
+            println("You attempt to case this spell but you're out of Rock Throw juice!")
+          }
+          else{
+            rtslots = rtslots - 1
+            println("You cast Rock Throw!")
+            hit = rng(10, 5)
+            enemylife = enemylife - hit
+            println(s"You hit the enemy for $hit, current enemy life total is $enemylife")
+            if(enemylife <= 0){
+              combat = 0
+            }
+          }
+        case 5 =>println("You do nothing. Are you trying to get yourself killed?")
+      }
+    }
+  }
+  def enemyact(){
+    println("Their hit lands!")
+    hit = rng(6, 1)
+    pHealthCheck()
   }
   def action(){
     println("How do you want to act? \n1 - Attack.\n2 - Block.\n3 - Heal.\n4 - Spell.")
-    choice = readInt()
-    choice match{
+    readInt() match{
       case 1 => println("You attack!")
         println("Your hit lands!")
         hit = rng(6, 1)
-        enemylife = enemylife - hit
-        println(s"You hit the enemy for $hit, current enemy life total is $enemylife")
-        if(enemylife <= 0){
-          combat = 0
-        }
+        eHealthCheck()
       case 2 => println("You block!")
         println("You prepare youself for an attack")
         pac + 2
@@ -57,70 +125,7 @@ object Game extends App {
         println(s"You heal for $heal")
         playerlife = playerlife + heal
         println(s"Your current life total is $playerlife")
-      case 4 => cast = 0
-        if(cast == 0){
-          println(s"What spell do you want to cast? \n1 - Magic Missle.  $mmslots / 2\n2 - Fire Bolt.  $fbslots / 3\n3 - Thunder Bolt.  $tbslots / 1\n4 - Rock Throw.  $rtslots / 4")
-          cast = readInt()
-          cast match{
-            case 1 =>
-              if(mmslots <= 0){
-                println("You attempt to case this spell but you're out of Magic Missle juice!")
-              }
-              else{
-                mmslots = mmslots - 1
-                println("You cast Magic Missle!")
-                hit = rng(8, 1)
-                enemylife = enemylife - hit
-                println(s"You hit the enemy for $hit, current enemy life total is $enemylife")
-                if(enemylife <= 0){
-                  combat = 0
-                }
-              }
-            case 2 =>
-              if(fbslots <= 0){
-                println("You attempt to case this spell but you're out of Fire Bolt juice!")
-              }
-              else{
-                fbslots = fbslots - 1
-                println("You cast Fire Bolt!")
-                hit = rng(15, 1)
-                enemylife = enemylife - hit
-                println(s"You hit the enemy for $hit, current enemy life total is $enemylife")
-                if(enemylife <= 0){
-                  combat = 0
-                }
-              }
-            case 3 =>
-              if(tbslots <= 0){
-                println("You attempt to case this spell but you're out of Thunder Bolt juice!")
-              }
-              else{
-                tbslots = tbslots - 1
-                println("You cast Thunder Bolt!")
-                hit = rng(5, 3)
-                enemylife = enemylife - hit
-                println(s"You hit the enemy for $hit, current enemy life total is $enemylife")
-                if(enemylife <= 0){
-                  combat = 0
-                }
-              }
-            case 4 =>
-              if(rtslots <= 0){
-                println("You attempt to case this spell but you're out of Rock Throw juice!")
-              }
-              else{
-                rtslots = rtslots - 1
-                println("You cast Rock Throw!")
-                hit = rng(10, 5)
-                enemylife = enemylife - hit
-                println(s"You hit the enemy for $hit, current enemy life total is $enemylife")
-                if(enemylife <= 0){
-                  combat = 0
-                }
-              }
-            case 5 =>println("You do nothing. Are you trying to get yourself killed?")
-          }
-        }
+      case 4 =>spellCast()
       case 5 =>println("You do nothing. Are you trying to get yourself killed?")
     }
   }

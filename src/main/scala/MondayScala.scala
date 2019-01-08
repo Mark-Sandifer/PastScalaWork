@@ -5,14 +5,13 @@ object MondayScala extends App {
   val helloW = println("Hello World!")
   helloW
   //Parameters
-  def stringMethod(a: String)= {
-    println(a)
+  def stringMethod(strElement: String)= {
+    println(strElement)
   }
   stringMethod("This is a test")
   //Return Types
   def add( num1:Int, num2:Int ) : Int = {
-    var sum:Int = 0
-    sum = num1 + num2
+    val sum = num1 + num2
     println(sum)
     sum
   }
@@ -23,6 +22,7 @@ object MondayScala extends App {
     case c: Double => println("This is a double")
     case c: String => println("This is a string")
     case c: Boolean => println("This is a Boolean")
+    case _ => println("Error.")
   }
   parameterInference(1)
   parameterInference(1.1)
