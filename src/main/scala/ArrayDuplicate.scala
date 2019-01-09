@@ -1,9 +1,20 @@
-//Unfinished Task 2
 object ArrayDuplicate extends App {
-  val arrayMil = (1 to 1000).toArray[Int]
-  arrayMil(456) = arrayMil(235)
-  val place = 1
-  for(i <- place until arrayMil.length){
-    println(i)
+  def arrayDup(input: Array[Int]): Boolean = {
+    val arrayLength = input.length
+    var finder1 = 0
+    var dupFound = false
+    while (finder1 < arrayLength && dupFound == false) {
+      var finder2 = finder1 + 1
+      while (finder2 < arrayLength && dupFound == false) {
+        if (input(finder1) == input(finder2)) {
+          dupFound = true
+        }
+        finder2 += 1
+      }
+      finder1 += 1
+    }
+    dupFound
   }
+  val arrayTest = Array(2,5,6,8,4,23,3,6,7,2,3)
+  arrayDup(arrayTest)
 }
