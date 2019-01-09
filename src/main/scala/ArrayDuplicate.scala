@@ -3,9 +3,9 @@ object ArrayDuplicate extends App {
     val arrayLength = input.length
     var finder1 = 0
     var dupFound = false
-    while (finder1 < arrayLength && dupFound == false) {
+    while (finder1 < arrayLength && !dupFound) {
       var finder2 = finder1 + 1
-      while (finder2 < arrayLength && dupFound == false) {
+      while (finder2 < arrayLength && !dupFound) {
         if (input(finder1) == input(finder2)) {
           dupFound = true
         }
