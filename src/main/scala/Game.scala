@@ -1,7 +1,6 @@
 object Game extends App {
   def rng(higher:Int, lower:Int):Int = {
-    val computerGuess = scala.util.Random
-    computerGuess.nextInt(higher - lower)
+    scala.util.Random.nextInt(higher - lower)
   }
   def textgap(){
     println("---")
@@ -45,63 +44,75 @@ object Game extends App {
     if(cast == 0){
       println(s"What spell do you want to cast? \n1 - Magic Missle.  $mmslots / 2\n2 - Fire Bolt.  $fbslots / 3\n3 - Thunder Bolt.  $tbslots / 1\n4 - Rock Throw.  $rtslots / 4")
       readInt() match{
-        case 1 =>
-          if(mmslots <= 0){
-            println("You attempt to case this spell but you're out of Magic Missle juice!")
-          }
-          else{
-            mmslots = mmslots - 1
-            println("You cast Magic Missle!")
-            hit = rng(8, 1)
-            enemylife = enemylife - hit
-            println(s"You hit the enemy for $hit, current enemy life total is $enemylife")
-            if(enemylife <= 0){
-              combat = 0
-            }
-          }
-        case 2 =>
-          if(fbslots <= 0){
-            println("You attempt to case this spell but you're out of Fire Bolt juice!")
-          }
-          else{
-            fbslots = fbslots - 1
-            println("You cast Fire Bolt!")
-            hit = rng(15, 1)
-            enemylife = enemylife - hit
-            println(s"You hit the enemy for $hit, current enemy life total is $enemylife")
-            if(enemylife <= 0){
-              combat = 0
-            }
-          }
-        case 3 =>
-          if(tbslots <= 0){
-            println("You attempt to case this spell but you're out of Thunder Bolt juice!")
-          }
-          else{
-            tbslots = tbslots - 1
-            println("You cast Thunder Bolt!")
-            hit = rng(5, 3)
-            enemylife = enemylife - hit
-            println(s"You hit the enemy for $hit, current enemy life total is $enemylife")
-            if(enemylife <= 0){
-              combat = 0
-            }
-          }
-        case 4 =>
-          if(rtslots <= 0){
-            println("You attempt to case this spell but you're out of Rock Throw juice!")
-          }
-          else{
-            rtslots = rtslots - 1
-            println("You cast Rock Throw!")
-            hit = rng(10, 5)
-            enemylife = enemylife - hit
-            println(s"You hit the enemy for $hit, current enemy life total is $enemylife")
-            if(enemylife <= 0){
-              combat = 0
-            }
-          }
+        case 1 => castMagicMissile()
+        case 2 => castFireBolt()
+        case 3 => castThunderBolt()
+        case 4 => castRockThrow()
         case 5 =>println("You do nothing. Are you trying to get yourself killed?")
+      }
+    }
+  }
+
+  def castMagicMissile() = {
+    if(mmslots <= 0){
+      println("You attempt to case this spell but you're out of Magic Missle juice!")
+    }
+    else{
+      mmslots = mmslots - 1
+      println("You cast Magic Missle!")
+      hit = rng(8, 1)
+      enemylife = enemylife - hit
+      println(s"You hit the enemy for $hit, current enemy life total is $enemylife")
+      if(enemylife <= 0){
+        combat = 0
+      }
+    }
+  }
+
+  def castFireBolt(): Unit = {
+    if(fbslots <= 0){
+      println("You attempt to case this spell but you're out of Fire Bolt juice!")
+    }
+    else{
+      fbslots = fbslots - 1
+      println("You cast Fire Bolt!")
+      hit = rng(15, 1)
+      enemylife = enemylife - hit
+      println(s"You hit the enemy for $hit, current enemy life total is $enemylife")
+      if(enemylife <= 0){
+        combat = 0
+      }
+    }
+  }
+
+  def castThunderBolt(): Unit = {
+    if(tbslots <= 0){
+      println("You attempt to case this spell but you're out of Thunder Bolt juice!")
+    }
+    else{
+      tbslots = tbslots - 1
+      println("You cast Thunder Bolt!")
+      hit = rng(5, 3)
+      enemylife = enemylife - hit
+      println(s"You hit the enemy for $hit, current enemy life total is $enemylife")
+      if(enemylife <= 0){
+        combat = 0
+      }
+    }
+  }
+
+  def castRockThrow(): Unit = {
+    if(rtslots <= 0){
+      println("You attempt to case this spell but you're out of Rock Throw juice!")
+    }
+    else{
+      rtslots = rtslots - 1
+      println("You cast Rock Throw!")
+      hit = rng(10, 5)
+      enemylife = enemylife - hit
+      println(s"You hit the enemy for $hit, current enemy life total is $enemylife")
+      if(enemylife <= 0){
+        combat = 0
       }
     }
   }
