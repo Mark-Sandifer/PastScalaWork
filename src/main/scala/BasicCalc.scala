@@ -1,28 +1,24 @@
 object BasicCalc extends App {
   class Calculator {
-    def add( a:Int, b:Int ) : Int = {
-      var sum:Int = 0
-      sum = a + b
+    def add( num1:Int, num2:Int ) : Int = {
+      var sum = num1 + num2
       println(sum)
-      return sum
+      sum
     }
-    def subtract( a:Int, b:Int ) : Int = {
-      var sum:Int = 0
-      sum = a - b
+    def subtract( num1:Int, num2:Int ) : Int = {
+      var sum = num1 - num2
       println(sum)
-      return sum
+      sum
     }
-    def divide( a:Int, b:Int ) : Int = {
-      var sum:Int = 0
-      sum = a / b
+    def divide( num1:Int, num2:Int ) : Int = {
+      var sum = num1 / num2
       println(sum)
-      return sum
+      sum
     }
-    def multiply( a:Int, b:Int ) : Int = {
-      var sum:Int = 0
-      sum = a * b
+    def multiply( num1:Int, num2:Int ) : Int = {
+      var sum = num1 * num2
       println(sum)
-      return sum
+      sum
     }
   }
   var ref = new Calculator
@@ -32,9 +28,7 @@ object BasicCalc extends App {
   println("2.Subtract")
   println("3.Multiply")
   println("4.Divide")
-  val choice = readInt()
-  var result = 0
-  choice match{
+  readInt() match{
     case 1 => println("Enter First and second number")
       ref.add(readInt, readInt)
     case 2 => println("Enter First and second number")
@@ -44,38 +38,5 @@ object BasicCalc extends App {
     case 4 => println("Enter First and second number")
       ref.divide(readInt, readInt)
     case _ => println("Error. Please Choose Appropriate action.")
-  }
-  //
-  while(result > 0){
-    println(s"Current Result value: $result")
-    println("Select operation.")
-    println("1.Add")
-    println("2.Subtract")
-    println("3.Multiply")
-    println("4.Divide")
-    println("Input choice(1/2/3/4)")
-    val choice = readInt()
-
-    choice match{
-      case 1 => println(s"Current Result value: $result")
-        val a = result
-        println("Please Input the second number")
-        val b = readInt()
-
-      case 2 => println(s"Current Result value: $result")
-        val a = result
-        println("Please Input the second number")
-        val b = readInt()
-
-      case 3 => println(s"Current Result value: $result")
-        val a = result
-        println("Please Input the second number")
-        val b = readInt()
-
-      case 4 => println(s"Current Result value: $result")
-        val a = result
-        println("Please Input the second number")
-        val b = readInt()
-    }
   }
 }
