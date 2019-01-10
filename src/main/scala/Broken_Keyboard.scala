@@ -2,7 +2,7 @@ import scala.collection.mutable.ArrayBuffer
 import scala.io.Source
 object Broken_Keyboard extends App {
   val listOfWords = Source.fromFile("C:\\Users\\Admin\\Desktop\\enable1.txt").getLines.toList
-  val keyboardKeys = "alep".toArray
+  val keyboardKeys = "wrea".toArray
   var longestWord = ""
   checkWord()
 
