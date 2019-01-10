@@ -30,7 +30,7 @@ object CreditCard extends App {
     total = total + sum
   }
   var total:Long = 0
-  run(5204408086566492L)
+  run(readLong())
   if(total % 10 == 0){
     println("This card is valid")
   }
